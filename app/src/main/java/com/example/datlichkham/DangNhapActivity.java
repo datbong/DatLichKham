@@ -3,6 +3,7 @@ package com.example.datlichkham;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,9 +22,12 @@ public class DangNhapActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Boolean isFirstLogin = true;
+        SharedPreferences prefs = getSharedPreferences("PREFS", MODE_PRIVATE);
+        Boolean isFirstLogin = prefs.getBoolean("ISFIRST", true);
+
         if(isFirstLogin)
         {
+            prefs.edit().putBoolean("ISFIRST", false).apply();
             startActivity(new Intent(DangNhapActivity.this, IntroActivity.class));
         }
     }
