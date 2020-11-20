@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DatLichKham">
+        <activity android:name=".DangKiActivity"></activity>
         <activity android:name=".IntroActivity" />
         <activity android:name=".DangNhapActivity">
             <intent-filter>
