@@ -29,6 +29,7 @@ public class IntroActivity extends AppCompatActivity {
         circleLayout = findViewById(R.id.intro_circleLayout);
         /*
         * Khởi tạo introAdapter
+        * thêm data cho adapter
         * gắn adapter cho viewpager2
         * */
         setupItem();

@@ -14,8 +14,8 @@ public class DangNhapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_nhap);
-        btnDangky = findViewById(R.id.dangNhap_btnDangky);
-        btnDangky.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.dangNhap_ivPhone).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DangNhapActivity.this, DangKiActivity.class);

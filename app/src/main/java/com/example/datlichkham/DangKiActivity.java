@@ -35,15 +35,5 @@ public class DangKiActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,                         android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLever.setAdapter(arrayAdapter);
-        spinnerLever.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tutorialsName = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), "Đã Chọn: " + tutorialsName,          Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView <?> parent) {
-            }
-        });
     }
 }
