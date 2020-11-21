@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     tools:context=".DangKiActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="498dp"
         android:text="Đăng Kí"
         android:textColor="#0DBAB1"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/dangKi_spinnerLever"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,16 +108,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dangKi_etRePassword" />
 
+    <Spinner
+        android:id="@+id/dangKi_spinnerLever"
+        android:layout_width="120dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/duongvien_goctron"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangKi_etEmail" />
+
     <Button
         android:id="@+id/dangKi_btnDangKi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:layout_marginBottom="133dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/duongvien_goctron"
         android:text="Đăng Kí"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dangKi_btnHuyBo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dangKi_etEmail" />
@@ -123,7 +138,7 @@
         android:id="@+id/dangKi_btnHuyBo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/duongvien_goctron"
         android:text="Hủy bỏ"
         app:layout_constraintEnd_toEndOf="parent"
