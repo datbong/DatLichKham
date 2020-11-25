@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/dangKi_etID"
+        android:id="@+id/dangKi_edUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -56,7 +56,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dangKi_etID" />
+        app:layout_constraintTop_toBottomOf="@+id/dangKi_edUserName" />
 
     <EditText
         android:id="@+id/dangKi_etRePassword"
