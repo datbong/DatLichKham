@@ -7,8 +7,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.datlichkham.model.Doctor;
+import com.example.datlichkham.model.Users;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,18 +39,35 @@ public class DangKiActivity extends AppCompatActivity {
             String pass = etUserName.getText().toString().trim();
             String rePass = etUserName.getText().toString().trim();
             String email = etUserName.getText().toString().trim();
-            String who = spinnerLever.getSelectedItem().toString();
+            String level = spinnerLever.getSelectedItem().toString();
 
-            Doctor doctor = new Doctor();
-            doctor.setUserName(userName);
-            doctor.setPass(pass);
-            doctor.setEmail(email);
-            doctor.setLevel(who);
+            Users user = new Users();
+            user.setUserName(userName);
+            user.setPassword(pass);
+            user.setEmail(email);
+            user.setLevel(level);
+            user.setAge("");
+            user.setBirthday("");
+            user.setPhone("");
+            user.setFullName("");
 
             database = FirebaseDatabase.getInstance();
-            ref = database.getReference("doctors");
-            ref.child(userName).setValue(doctor);
+            ref = database.getReference("users");
+            ref.child(userName).setValue(user);
 
+//            if(level.equals("Bệnh Nhân")){
+//
+//            } else {
+//                Doctor doctor = new Doctor();
+//                doctor.setUserName(userName);
+//                doctor.setPassword(pass);
+//                doctor.setEmail(email);
+//                doctor.setFullName("");
+//
+//                database = FirebaseDatabase.getInstance();
+//                ref = database.getReference("doctors");
+//                ref.child(userName).setValue(doctor);
+//            }
         });
     }
 

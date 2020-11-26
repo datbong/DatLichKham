@@ -1,16 +1,16 @@
 package com.example.datlichkham.model;
 
 public class Doctor {
-    String userName, pass, email, level;
+    String userName, password, email, fullName;
 
     public Doctor() {
     }
 
-    public Doctor(String userName, String pass, String email, String level) {
+    public Doctor(String userName, String password, String email, String level, String fullName) {
         this.userName = userName;
-        this.pass = pass;
+        this.password = password;
         this.email = email;
-        this.level = level;
+        this.fullName = fullName;
     }
 
     public String getUserName() {
@@ -21,12 +21,12 @@ public class Doctor {
         this.userName = userName;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -37,11 +37,11 @@ public class Doctor {
         this.email = email;
     }
 
-    public String getLevel() {
-        return level;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

@@ -75,18 +75,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dangNhap_edusername" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
+    <Spinner
+        android:id="@+id/dangNhap_spinnerLever"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:textSize="18sp"
+        android:scrollbarSize="18sp"
+        android:background="@drawable/duongvien_goctron"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangNhap_edpass" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:gravity="center"
         android:text="Hoặc đăng nhập bằng phương thức khác"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dangNhap_btnDangnhap" />
@@ -97,20 +112,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="@font/robotobold"
-        android:text="ĐĂNG NHẬP"
-        android:textSize="20sp"
-        android:textColor="#EFF3F6"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:text="ĐĂNG NHẬP"
+        android:textColor="#EFF3F6"
+        android:textSize="20sp"
         app:backgroundTint="#3F51B5"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dangNhap_edpass" />
+        app:layout_constraintTop_toBottomOf="@+id/dangNhap_spinnerLever" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
