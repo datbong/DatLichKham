@@ -75,21 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dangNhap_edusername" />
 
-    <Spinner
-        android:id="@+id/dangNhap_spinnerLever"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:scrollbarSize="18sp"
-        android:background="@drawable/duongvien_goctron"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dangNhap_edpass" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
@@ -111,10 +96,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:fontFamily="@font/robotobold"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -126,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dangNhap_spinnerLever" />
+        app:layout_constraintTop_toBottomOf="@+id/dangNhap_edpass" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"

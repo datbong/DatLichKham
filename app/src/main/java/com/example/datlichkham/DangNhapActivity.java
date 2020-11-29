@@ -26,7 +26,6 @@ public class DangNhapActivity extends AppCompatActivity {
 
     private SharedPreferences prefs;
     private EditText edUsername, edPass;
-    private Spinner spinnerLevel;
 
     public static final String AGE = "AGE";
     public static final String BIRTHDAY = "BIRTHDAY";
@@ -42,7 +41,6 @@ public class DangNhapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dang_nhap);
 
         mappingView();
-        setupSpinner();
         prefs = getSharedPreferences("PREFS", MODE_PRIVATE);
         //isFirstLogin = true thì show màn hình giới thiệu
         Boolean isFirstLogin = prefs.getBoolean("ISFIRST", true);
@@ -56,7 +54,6 @@ public class DangNhapActivity extends AppCompatActivity {
     private void mappingView() {
         edUsername = findViewById(R.id.dangNhap_edusername);
         edPass = findViewById(R.id.dangNhap_edpass);
-        spinnerLevel = findViewById(R.id.dangNhap_spinnerLever);
     }
 
     private void setupListener(){
@@ -110,12 +107,4 @@ public class DangNhapActivity extends AppCompatActivity {
         prefs.edit().putString(PASSWORD, passwordFromDB).commit();
     }
 
-    private void setupSpinner() {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Bệnh Nhân");
-        arrayList.add("Bác Sĩ");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLevel.setAdapter(arrayAdapter);
-    }
 }
