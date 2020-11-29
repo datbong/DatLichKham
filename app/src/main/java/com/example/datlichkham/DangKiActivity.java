@@ -27,6 +27,7 @@ public class DangKiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_ki);
+        getSupportActionBar().hide();
 
         mappingView();
         setupSpinner();

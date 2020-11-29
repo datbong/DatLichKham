@@ -3,8 +3,10 @@ package com.example.datlichkham;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.datlichkham.fragment.bacsi.BsChatFragment;
 import com.example.datlichkham.fragment.bacsi.BsHistoryFragment;
@@ -38,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         mappingView();
         prefs = getSharedPreferences("PREFS", MODE_PRIVATE);
         String level = prefs.getString(LEVEL, "");
+        String checkNameIsBlank = prefs.getString(FULLNAME, "");
+
+        if(checkNameIsBlank.isEmpty()){
+            Toast.makeText(this, "ten trong", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, CapNhatThongTinActivity.class));
+        }
 
         if(level.equals("Bệnh Nhân")){
             addViewUsers();
