@@ -41,152 +41,165 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/header_ndHome" />
 
-    <androidx.gridlayout.widget.GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:columnCount="2"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDatLich_ndHome"
-        app:rowCount="2">
+        app:layout_constraintTop_toBottomOf="@+id/btnDatLich_ndHome">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvHistory_ndHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:elevation="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_column="0"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_row="0">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvHistory_ndHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/shadow_black"
+                app:cardCornerRadius="8dp"
+                app:layout_gravity="fill">
 
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:src="@drawable/icon_tax" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Phiếu khám bệnh"
-                    android:textAlignment="center" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@drawable/icon_tax" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvProfile_ndHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:elevation="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_column="1"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_row="0">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Phiếu khám bệnh"
+                        android:textAlignment="center" />
 
-            <LinearLayout
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvProfile_ndHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_weight="1"
+                app:layout_gravity="fill">
 
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:src="@drawable/icon_profile" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Hồ sơ bệnh nhân"
-                    android:textAlignment="center" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@drawable/icon_profile" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_message_ndHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:elevation="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_column="0"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_row="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Hồ sơ bệnh nhân"
+                        android:textAlignment="center" />
 
-            <LinearLayout
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_message_ndHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp"
+                app:layout_gravity="center"
+                android:layout_weight="1">
 
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:src="@drawable/icon_ring" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Tin nhắn"
-                    android:textAlignment="center" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@drawable/icon_ring" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_news_ndHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:elevation="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_column="1"
-            app:layout_columnWeight="1"
-            app:layout_gravity="fill"
-            app:layout_row="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Tin nhắn"
+                        android:textAlignment="center" />
 
-            <LinearLayout
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_news_ndHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_weight="1">
 
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:src="@drawable/icon_news" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Thông tin"
-                    android:textAlignment="center" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@drawable/icon_news" />
 
-    </androidx.gridlayout.widget.GridLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Thông tin"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

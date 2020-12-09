@@ -77,16 +77,19 @@ public class DangNhapActivity extends AppCompatActivity {
                         String passwordFromDB = dataSnapshot.child(userNameInput).child("password").getValue(String.class);
 
                         if(passwordFromDB.equals(passwordInput)){
-                            String ageFromDB = dataSnapshot.child(userNameInput).child("age").getValue(String.class);
-                            String birthdayFromDB = dataSnapshot.child(userNameInput).child("birthday").getValue(String.class);
-                            String emailFromDB = dataSnapshot.child(userNameInput).child("email").getValue(String.class);
+//                            String ageFromDB = dataSnapshot.child(userNameInput).child("age").getValue(String.class);
+//                            String birthdayFromDB = dataSnapshot.child(userNameInput).child("birthday").getValue(String.class);
+//                            String emailFromDB = dataSnapshot.child(userNameInput).child("email").getValue(String.class);
                             String fullNameFromDB = dataSnapshot.child(userNameInput).child("fullName").getValue(String.class);
                             String levelFromDB = dataSnapshot.child(userNameInput).child("level").getValue(String.class);
-                            String phoneFromDB = dataSnapshot.child(userNameInput).child("phone").getValue(String.class);
+//                            String phoneFromDB = dataSnapshot.child(userNameInput).child("phone").getValue(String.class);
                             String userNameFromDB = dataSnapshot.child(userNameInput).child("userName").getValue(String.class);
-
-                            saveDataUser(ageFromDB, birthdayFromDB, emailFromDB, fullNameFromDB, levelFromDB, phoneFromDB, userNameFromDB, passwordFromDB);
-                            startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+                            prefs.edit().putString(USERNAME, userNameFromDB).commit();
+                            prefs.edit().putString(FULLNAME, fullNameFromDB).commit();
+                            prefs.edit().putString(LEVEL, levelFromDB).commit();
+//                            saveDataUser(ageFromDB, birthdayFromDB, emailFromDB, fullNameFromDB, levelFromDB, phoneFromDB, userNameFromDB, passwordFromDB);
+                            Intent dangNhapIntent = new Intent(DangNhapActivity.this, MainActivity.class);
+                            startActivity(dangNhapIntent);
                         }
                     }
                 }
