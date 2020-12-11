@@ -21,7 +21,6 @@ import com.saeed.infiniteflow.lib.FinitePagerContainer;
 
 
 public class NdHomeFragment extends Fragment implements View.OnClickListener{
-    private CardView history, profile, message, news;
 
     public NdHomeFragment() {
         // Required empty public constructor

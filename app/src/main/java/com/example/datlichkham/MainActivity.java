@@ -42,12 +42,15 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("PREFS", MODE_PRIVATE);
         String level = prefs.getString(LEVEL, "");
         String checkNameIsBlank = prefs.getString(FULLNAME, "");
+//        String userName = prefs.getString(USERNAME, "");
 
         if(checkNameIsBlank.isEmpty()){
             Toast.makeText(this, "ten trong", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, CapNhatThongTinActivity.class));
         }
 
+//        Bundle b = new Bundle();
+//        b.putString(USERNAME, userName);
         if(level.equals("Bệnh Nhân")){
             addViewUsers();
         } else {
@@ -75,10 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     currentFragment = new BsChatFragment();
                     break;
                 case R.id.menu_setting:
-                    currentFragment = new BsSettingFragment();
+                    currentFragment = new NdSettingFragment();
                     break;
             }
-
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, currentFragment).commit();
             return true;

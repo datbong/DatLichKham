@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DatLichKham">
-        <activity android:name=".BangTinActivity"></activity>
+        <activity android:name=".DatLichActivity"></activity>
+        <activity android:name=".BangTinActivity" />
         <activity android:name=".CapNhatThongTinActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".DangKiActivity" />

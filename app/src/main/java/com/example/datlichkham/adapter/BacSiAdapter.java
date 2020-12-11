@@ -1,5 +1,6 @@
 package com.example.datlichkham.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.datlichkham.DatLichActivity;
 import com.example.datlichkham.R;
 import com.example.datlichkham.model.Users;
 
 import java.util.List;
 
-public class DatLichAdapter extends RecyclerView.Adapter<DatLichAdapter.DatLichViewHolder>{
+public class BacSiAdapter extends RecyclerView.Adapter<BacSiAdapter.DatLichViewHolder>{
     private List<Users> mList;
 
-    public DatLichAdapter(List<Users> mList) {
+    public BacSiAdapter(List<Users> mList) {
         this.mList = mList;
     }
 
@@ -32,7 +34,10 @@ public class DatLichAdapter extends RecyclerView.Adapter<DatLichAdapter.DatLichV
     public void onBindViewHolder(@NonNull DatLichViewHolder holder, int position) {
             holder.name.setText(mList.get(position).getFullName());
             holder.btnDatLich.setOnClickListener(v -> {
-                
+                Intent intent = new Intent(v.getContext(), DatLichActivity.class);
+                intent.putExtra("IDBS", mList.get(position).getUserName());
+                intent.putExtra("TENBS", mList.get(position).getFullName());
+                v.getContext().startActivity(intent);
             });
     }
 

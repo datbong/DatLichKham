@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.datlichkham.R;
-import com.example.datlichkham.adapter.DatLichAdapter;
+import com.example.datlichkham.adapter.BacSiAdapter;
 import com.example.datlichkham.model.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +30,7 @@ public class NdDatLichFragment extends Fragment {
     private Context mContext;
     private RecyclerView rcDatLich;
     private List<Users> mUsers;
-    private DatLichAdapter datLichAdapter;
+    private BacSiAdapter datLichAdapter;
 
     public NdDatLichFragment() {
         // Required empty public constructor
@@ -76,8 +76,8 @@ public class NdDatLichFragment extends Fragment {
                         if(!bacSi.getFullName().isEmpty())
                             mUsers.add(bacSi);
                     }
-                    datLichAdapter = new DatLichAdapter(mUsers);
-                    datLichAdapter.notifyDataSetChanged();
+                    datLichAdapter = new BacSiAdapter(mUsers);
+
                     LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                     rcDatLich.setLayoutManager(layoutManager);
