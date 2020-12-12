@@ -5,6 +5,7 @@ public class PhieuKham {
     private String idBs, idBn;
     private String tenBs, tenBn;
     private String status;
+    private String benh;
     private String note;
     private String date;
     private String time;
@@ -13,7 +14,7 @@ public class PhieuKham {
     public PhieuKham() {
     }
 
-    public PhieuKham(String id, String idBs, String idBn, String tenBs, String tenBn, String status, String note, String date, String time, int rate) {
+    public PhieuKham(String id, String idBs, String idBn, String tenBs, String tenBn, String status, String note, String date, String time, String benh, int rate) {
         this.id = id;
         this.idBs = idBs;
         this.idBn = idBn;
@@ -24,6 +25,7 @@ public class PhieuKham {
         this.date = date;
         this.time = time;
         this.rate = rate;
+        this.benh = benh;
     }
 
     public String getId() {
@@ -104,5 +106,13 @@ public class PhieuKham {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getBenh() {
+        return benh;
+    }
+
+    public void setBenh(String benh) {
+        this.benh = benh;
     }
 }

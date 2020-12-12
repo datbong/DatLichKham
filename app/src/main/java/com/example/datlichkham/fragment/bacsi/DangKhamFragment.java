@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.datlichkham.R;
+import com.example.datlichkham.model.PhieuKham;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class DangKhamFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String idPhieuKham;
 
     private EditText edChanDoan, edChiTiet;
     private TextView tvMaPhieuKham, tvTenBn;
@@ -78,10 +80,24 @@ public class DangKhamFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dang_kham, container, false);
-        String idPhieuKham = getContext().getSharedPreferences("BACSI", Context.MODE_PRIVATE).getString("IDPK", "");
+        idPhieuKham = getContext().getSharedPreferences("BACSI", Context.MODE_PRIVATE).getString("IDPK", "");
         mapping(view);
         getDataFromDb();
+        hoanThanhKham();
         return view;
+    }
+
+    private void hoanThanhKham() {
+        btnHoanThanhKham.setOnClickListener(v -> {
+            String benh = edChanDoan.getText().toString().trim();
+            String chiTiet = edChiTiet.getText().toString().trim();
+            databaseReference = FirebaseDatabase.getInstance().getReference("History").child(idPhieuKham);
+            databaseReference.child("benh").setValue(benh);
+            databaseReference.child("note").setValue(chiTiet);
+            databaseReference.child("status").setValue("Hoàn thành");
+            getContext().getSharedPreferences("BACSI", Context.MODE_PRIVATE).edit().putBoolean("DANGKHAM", false).commit();
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, new BsLichKhamFragment()).remove(DangKhamFragment.this).commit();
+        });
     }
 
     private void getDataFromDb() {
@@ -90,7 +106,13 @@ public class DangKhamFragment extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    if(ds.getKey().equalsIgnoreCase(idPhieuKham)){
+                        PhieuKham obj = ds.getValue(PhieuKham.class);
+                        tvTenBn.setText(obj.getTenBn());
+                        tvMaPhieuKham.setText(obj.getId());
+                    }
+                }
             }
 
             @Override

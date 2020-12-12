@@ -67,9 +67,10 @@ public class NdDatLichFragment extends Fragment {
         mUsers = new ArrayList<>();
         mUsers.clear();
         ref = FirebaseDatabase.getInstance().getReference("users");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUsers.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     if(ds.child("level").getValue(String.class).equalsIgnoreCase("Bác Sĩ")){
                         Users bacSi = ds.getValue(Users.class);

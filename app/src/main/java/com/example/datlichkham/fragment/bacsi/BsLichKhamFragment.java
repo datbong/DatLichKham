@@ -68,13 +68,13 @@ public class BsLichKhamFragment extends Fragment {
 
     private void getDataLichKham() {
         mList = new ArrayList<>();
-        mList.clear();
         ref = FirebaseDatabase.getInstance().getReference("History");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    if(ds.child("idBs").getValue(String.class).equalsIgnoreCase(idBs)){
+                    if(ds.child("idBs").getValue(String.class).equalsIgnoreCase(idBs) && ds.child("status").getValue(String.class).equalsIgnoreCase("đang chờ")){
                         PhieuKham obj = ds.getValue(PhieuKham.class);
                         mList.add(obj);
                     }

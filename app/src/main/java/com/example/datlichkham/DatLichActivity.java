@@ -58,7 +58,7 @@ public class DatLichActivity extends AppCompatActivity {
 
     private void taoPhieuKham() {
         ref = FirebaseDatabase.getInstance().getReference().child("History");
-        PhieuKham phieuKham = new PhieuKham("null", "null", "null", "null", "null", "Đang chờ", "null", "null", "null", 0);
+        PhieuKham phieuKham = new PhieuKham("null", "null", "null", "null", "null", "Đang chờ", "null", "null", "null", "null", 0);
         phieuKham.setId(ref.push().getKey());
         phieuKham.setIdBs(idBs);
         phieuKham.setTenBs(tenBs);
