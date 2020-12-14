@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if(checkNameIsBlank.isEmpty()){
             Toast.makeText(this, "ten trong", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, CapNhatThongTinActivity.class));
+            finish();
         }
 
 //        Bundle b = new Bundle();

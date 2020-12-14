@@ -3,6 +3,7 @@ package com.example.datlichkham;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,6 +13,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.regex.Pattern;
 
 public class CapNhatThongTinActivity extends AppCompatActivity {
     private TextInputLayout tilUsername, tilHoTen, tilMail, tilBirthday, tilAge, tilPhone;
@@ -70,12 +73,32 @@ public class CapNhatThongTinActivity extends AppCompatActivity {
 
     private void updateInfor() {
         findViewById(R.id.btn_ok_capNhatActivity).setOnClickListener(v -> {
-            reference.child("age").setValue(tilAge.getEditText().getText().toString().trim());
-            reference.child("birthday").setValue(tilBirthday.getEditText().getText().toString().trim());
-            reference.child("email").setValue(tilMail.getEditText().getText().toString().trim());
-            reference.child("fullName").setValue(tilHoTen.getEditText().getText().toString().trim());
-            reference.child("phone").setValue(tilPhone.getEditText().getText().toString().trim());
-            finish();
+            Boolean checkError = true;
+            if(tilHoTen.getEditText().getText().toString().trim().isEmpty()){
+                tilHoTen.setError("Tên không được để trống");
+                checkError = false;
+            }
+
+            if(tilMail.getEditText().getText().toString().trim().isEmpty()){
+                tilMail.setError("Email không được để trống");
+                checkError = false;
+            }
+
+            if(!Pattern.matches("^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$", tilMail.getEditText().getText().toString().trim())){
+                tilMail.setError("Email sai định dạng");
+                checkError = false;
+            }
+
+            if(checkError){
+                reference.child("age").setValue(tilAge.getEditText().getText().toString().trim());
+                reference.child("birthday").setValue(tilBirthday.getEditText().getText().toString().trim());
+                reference.child("email").setValue(tilMail.getEditText().getText().toString().trim());
+                reference.child("fullName").setValue(tilHoTen.getEditText().getText().toString().trim());
+                reference.child("phone").setValue(tilPhone.getEditText().getText().toString().trim());
+                prefs.edit().putString(FULLNAME, tilHoTen.getEditText().getText().toString().trim()).commit();
+                startActivity(new Intent(CapNhatThongTinActivity.this, MainActivity.class));
+                finish();
+            }
         });
     }
 

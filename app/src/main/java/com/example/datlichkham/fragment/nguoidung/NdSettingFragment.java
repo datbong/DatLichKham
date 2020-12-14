@@ -1,6 +1,7 @@
 package com.example.datlichkham.fragment.nguoidung;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.datlichkham.DangNhapActivity;
 import com.example.datlichkham.R;
 import com.example.datlichkham.adapter.SettingAdapter;
 import com.example.datlichkham.model.Setting;
@@ -62,7 +64,15 @@ public class NdSettingFragment extends Fragment {
         lvSetting.setDivider(null);
         lvSetting.setAdapter(settingAdapter);
         lvSetting.setOnItemClickListener((parent, view, position, id) -> {
-            Toast.makeText(getContext(), id +"//" + position, Toast.LENGTH_SHORT).show();
+            switch (position){
+                case 7:
+                    context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().clear().commit();
+                    context.startActivity(new Intent(context, DangNhapActivity.class));
+                    getActivity().finish();
+                    break;
+                default:
+                    break;
+            }
         });
     }
 

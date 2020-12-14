@@ -61,17 +61,28 @@ public class DatLichActivity extends AppCompatActivity {
     }
 
     private void taoPhieuKham() {
-        ref = FirebaseDatabase.getInstance().getReference().child("History");
-        PhieuKham phieuKham = new PhieuKham("null", "null", "null", "null", "null", "Đang chờ", "null", "null", "null", "null", 0);
-        phieuKham.setId(ref.push().getKey());
-        phieuKham.setIdBs(idBs);
-        phieuKham.setTenBs(tenBs);
-        phieuKham.setIdBn(idBn);
-        phieuKham.setTenBn(tenBn);
-        phieuKham.setDate(edNgay.getText().toString().trim());
-        phieuKham.setTime(edGio.getText().toString().trim());
-        ref.child(phieuKham.getId()).setValue(phieuKham);
-        finish();
+        Boolean checkError = true;
+        if(edNgay.getText().toString().trim().isEmpty()){
+            edNgay.setError("Không được bỏ trống ngày");
+            checkError = false;
+        }
+        if(edGio.getText().toString().trim().isEmpty()){
+            edGio.setError("Không được bỏ trống thời gian");
+            checkError = false;
+        }
+        if(checkError){
+            ref = FirebaseDatabase.getInstance().getReference().child("History");
+            PhieuKham phieuKham = new PhieuKham("null", "null", "null", "null", "null", "Đang chờ", "null", "null", "null", "null", 0);
+            phieuKham.setId(ref.push().getKey());
+            phieuKham.setIdBs(idBs);
+            phieuKham.setTenBs(tenBs);
+            phieuKham.setIdBn(idBn);
+            phieuKham.setTenBn(tenBn);
+            phieuKham.setDate(edNgay.getText().toString().trim());
+            phieuKham.setTime(edGio.getText().toString().trim());
+            ref.child(phieuKham.getId()).setValue(phieuKham);
+            finish();
+        }
     }
 
     private void showTimeDialog() {

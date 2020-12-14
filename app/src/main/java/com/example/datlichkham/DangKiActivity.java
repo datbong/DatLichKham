@@ -1,5 +1,6 @@
 package com.example.datlichkham;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,10 +12,14 @@ import android.widget.Toast;
 
 import com.example.datlichkham.model.Doctor;
 import com.example.datlichkham.model.Users;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class DangKiActivity extends AppCompatActivity {
     private FirebaseDatabase database;
@@ -32,43 +37,70 @@ public class DangKiActivity extends AppCompatActivity {
         mappingView();
         setupSpinner();
         dangKi();
+        btnHuyBo.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private void dangKi() {
         btnDangKi.setOnClickListener(v -> {
             String userName = etUserName.getText().toString().trim();
-            String pass = etUserName.getText().toString().trim();
-            String rePass = etUserName.getText().toString().trim();
-            String email = etUserName.getText().toString().trim();
+            String pass = etPassword.getText().toString().trim();
+            String rePass = etRePassword.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
             String level = spinnerLever.getSelectedItem().toString();
 
-            Users user = new Users();
-            user.setUserName(userName);
-            user.setPassword(pass);
-            user.setEmail(email);
-            user.setLevel(level);
-            user.setAge("");
-            user.setBirthday("");
-            user.setPhone("");
-            user.setFullName("");
+            Boolean checkError = true;
+            if(userName.isEmpty()){
+                etUserName.setError("Tên đăng nhập không được bỏ trống");
+                checkError = false;
+            }
+            if(rePass.isEmpty()){
+                etRePassword.setError("Nhập lại mật khẩu không được bỏ trống");
+                checkError = false;
+            }
+            if(pass.length()<6){
+                etPassword.setError("Mật khẩu phải từ 6 kí tự");
+                checkError = false;
+            }
+            if(!rePass.equals(pass)){
+                etRePassword.setError("Nhập lại mật khẩu không đúng");
+                checkError = false;
+            }
+            if(!Pattern.matches("^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$", email)){
+                etEmail.setError("Mail sai định dạng");
+                checkError = false;
+            }
+            if(checkError){
+                Users user = new Users();
+                user.setUserName(userName);
+                user.setPassword(pass);
+                user.setEmail(email);
+                user.setLevel(level);
+                user.setAge("");
+                user.setBirthday("");
+                user.setPhone("");
+                user.setFullName("");
 
-            database = FirebaseDatabase.getInstance();
-            ref = database.getReference("users");
-            ref.child(userName).setValue(user);
+                database = FirebaseDatabase.getInstance();
+                ref = database.getReference("users");
+                ref.child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            Toast.makeText(DangKiActivity.this, "Tên đăng nhập đã tồn tại", Toast.LENGTH_SHORT).show();
+                        } else {
+                            ref.child(userName).setValue(user);
+                        }
+                    }
 
-//            if(level.equals("Bệnh Nhân")){
-//
-//            } else {
-//                Doctor doctor = new Doctor();
-//                doctor.setUserName(userName);
-//                doctor.setPassword(pass);
-//                doctor.setEmail(email);
-//                doctor.setFullName("");
-//
-//                database = FirebaseDatabase.getInstance();
-//                ref = database.getReference("doctors");
-//                ref.child(userName).setValue(doctor);
-//            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                finish();
+            }
         });
     }
 

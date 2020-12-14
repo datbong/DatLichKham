@@ -50,6 +50,12 @@ public class DangNhapActivity extends AppCompatActivity {
         if(isFirstLogin) {
             prefs.edit().putBoolean("ISFIRST", false).apply();
             startActivity(new Intent(DangNhapActivity.this, IntroActivity.class));
+            finish();
+        }
+        if(prefs.getBoolean("REMEMBERLOGIN", false)){
+            Intent dangNhapIntent = new Intent(DangNhapActivity.this, MainActivity.class);
+            startActivity(dangNhapIntent);
+            finish();
         }
         setupListener();
     }
@@ -68,49 +74,65 @@ public class DangNhapActivity extends AppCompatActivity {
             String userNameInput = edUsername.getText().toString().trim();
             String passwordInput = edPass.getText().toString().trim();
 
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-            Query checkUser = ref.orderByChild("userName").equalTo(userNameInput);
-            checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        String passwordFromDB = dataSnapshot.child(userNameInput).child("password").getValue(String.class);
+            Boolean checkError = true;
+            if(userNameInput.isEmpty()){
+                edUsername.setError("Nhập tên đăng nhập");
+                checkError = false;
+            }
+            if(passwordInput.isEmpty()){
+                edPass.setError("Nhập mật khẩu");
+                checkError = false;
+            }
+            if(passwordInput.length()<6){
+                edPass.setError("Mật khẩu ít nhất 6 kí tự");
+                checkError = false;
+            }
+            if(checkError) {
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+                Query checkUser = ref.orderByChild("userName").equalTo(userNameInput);
+                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            String passwordFromDB = dataSnapshot.child(userNameInput).child("password").getValue(String.class);
 
-                        if(passwordFromDB.equals(passwordInput)){
-//                            String ageFromDB = dataSnapshot.child(userNameInput).child("age").getValue(String.class);
-//                            String birthdayFromDB = dataSnapshot.child(userNameInput).child("birthday").getValue(String.class);
-//                            String emailFromDB = dataSnapshot.child(userNameInput).child("email").getValue(String.class);
-                            String fullNameFromDB = dataSnapshot.child(userNameInput).child("fullName").getValue(String.class);
-                            String levelFromDB = dataSnapshot.child(userNameInput).child("level").getValue(String.class);
-//                            String phoneFromDB = dataSnapshot.child(userNameInput).child("phone").getValue(String.class);
-                            String userNameFromDB = dataSnapshot.child(userNameInput).child("userName").getValue(String.class);
-                            prefs.edit().putString(USERNAME, userNameFromDB).commit();
-                            prefs.edit().putString(FULLNAME, fullNameFromDB).commit();
-                            prefs.edit().putString(LEVEL, levelFromDB).commit();
-//                            saveDataUser(ageFromDB, birthdayFromDB, emailFromDB, fullNameFromDB, levelFromDB, phoneFromDB, userNameFromDB, passwordFromDB);
-                            Intent dangNhapIntent = new Intent(DangNhapActivity.this, MainActivity.class);
-                            startActivity(dangNhapIntent);
+                            if(passwordFromDB.equals(passwordInput)){
+                                String fullNameFromDB = dataSnapshot.child(userNameInput).child("fullName").getValue(String.class);
+                                String levelFromDB = dataSnapshot.child(userNameInput).child("level").getValue(String.class);
+                                String userNameFromDB = dataSnapshot.child(userNameInput).child("userName").getValue(String.class);
+                                prefs.edit().putString(USERNAME, userNameFromDB).commit();
+                                prefs.edit().putString(FULLNAME, fullNameFromDB).commit();
+                                prefs.edit().putString(LEVEL, levelFromDB).commit();
+                                prefs.edit().putBoolean("REMEMBERLOGIN", true).commit();
+                                Intent dangNhapIntent = new Intent(DangNhapActivity.this, MainActivity.class);
+                                startActivity(dangNhapIntent);
+                                finish();
+                            } else {
+                                Toast.makeText(DangNhapActivity.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
+            }
+
+
         });
     }
 
-    private void saveDataUser(String ageFromDB, String birthdayFromDB, String emailFromDB, String fullNameFromDB, String levelFromDB, String phoneFromDB, String userNameFromDB, String passwordFromDB) {
-        prefs.edit().putString(AGE, ageFromDB).commit();
-        prefs.edit().putString(BIRTHDAY, birthdayFromDB).commit();
-        prefs.edit().putString(EMAIL, emailFromDB).commit();
-        prefs.edit().putString(FULLNAME, fullNameFromDB).commit();
-        prefs.edit().putString(LEVEL, levelFromDB).commit();
-        prefs.edit().putString(PHONE, phoneFromDB).commit();
-        prefs.edit().putString(USERNAME, userNameFromDB).commit();
-        prefs.edit().putString(PASSWORD, passwordFromDB).commit();
-    }
+//    private void saveDataUser(String ageFromDB, String birthdayFromDB, String emailFromDB, String fullNameFromDB, String levelFromDB, String phoneFromDB, String userNameFromDB, String passwordFromDB) {
+//        prefs.edit().putString(AGE, ageFromDB).commit();
+//        prefs.edit().putString(BIRTHDAY, birthdayFromDB).commit();
+//        prefs.edit().putString(EMAIL, emailFromDB).commit();
+//        prefs.edit().putString(FULLNAME, fullNameFromDB).commit();
+//        prefs.edit().putString(LEVEL, levelFromDB).commit();
+//        prefs.edit().putString(PHONE, phoneFromDB).commit();
+//        prefs.edit().putString(USERNAME, userNameFromDB).commit();
+//        prefs.edit().putString(PASSWORD, passwordFromDB).commit();
+//    }
 
 }

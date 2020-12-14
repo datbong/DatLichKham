@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.datlichkham.adapter.IntroAdapter;
 import com.example.datlichkham.model.IntroItem;
@@ -52,6 +53,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(IntroActivity.this, DangNhapActivity.class));
+                finish();
             }
         });
     }

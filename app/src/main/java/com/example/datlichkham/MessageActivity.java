@@ -77,7 +77,7 @@ public class MessageActivity extends AppCompatActivity {
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     Message obj = ds.getValue(Message.class);
                     if(obj.getSenderId().equalsIgnoreCase(senderId) && obj.getReceiverId().equalsIgnoreCase(receiverId)
-                            || obj.getSenderId().equalsIgnoreCase(receiverId) && obj.getReceiverId().equalsIgnoreCase(senderId)){
+                            || obj.getSenderId().equalsIgnoreCase(receiverId) && obj.getReceiverId().equalsIgnoreCase(senderId )){
                         messageList.add(obj);
                     }
                 }

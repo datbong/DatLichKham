@@ -96,7 +96,7 @@ public class DangKhamFragment extends Fragment {
             databaseReference.child("note").setValue(chiTiet);
             databaseReference.child("status").setValue("Hoàn thành");
             getContext().getSharedPreferences("BACSI", Context.MODE_PRIVATE).edit().putBoolean("DANGKHAM", false).commit();
-            getFragmentManager().beginTransaction().add(R.id.fragment_container, new BsLichKhamFragment()).remove(DangKhamFragment.this).commit();
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, new BsLichKhamFragment()).remove(this).commit();
         });
     }
 
