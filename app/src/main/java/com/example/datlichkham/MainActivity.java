@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     currentFragment = new BsHomeFragment();
                     break;
                 case R.id.menu_history:
-                    currentFragment = new BsHistoryFragment();
+                    currentFragment = new NdHistoryFragment();
                     break;
                 case R.id.menu_datLich:
                     currentFragment = new BsLichKhamFragment();

@@ -73,7 +73,7 @@ public class BsHomeFragment extends Fragment implements View.OnClickListener{
             case R.id.cvHistory_bsHome:
                 bnv.setSelectedItemId(R.id.menu_history);
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new BsHistoryFragment()).commit();
+                        .replace(R.id.fragment_container, new NdHistoryFragment()).commit();
                 break;
             case R.id.cvProfile_bsHome:
                 getActivity().startActivity(new Intent(getContext(), CapNhatThongTinActivity.class));

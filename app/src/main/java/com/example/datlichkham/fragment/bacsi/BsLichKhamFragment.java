@@ -60,6 +60,7 @@ public class BsLichKhamFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bs_lich_kham, container, false);
         idBs = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).getString("USERNAME", "");
+        ref = FirebaseDatabase.getInstance().getReference("History");
         rcLichKham = view.findViewById(R.id.rcPhieuKham);
         dangKham();
         getDataLichKham();
@@ -68,7 +69,6 @@ public class BsLichKhamFragment extends Fragment {
 
     private void getDataLichKham() {
         mList = new ArrayList<>();
-        ref = FirebaseDatabase.getInstance().getReference("History");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -104,6 +104,7 @@ public class BsLichKhamFragment extends Fragment {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             PhieuKham obj = mList.get(Integer.valueOf(String.valueOf(viewHolder.itemView.getTag())));
             SharedPreferences pref = context.getSharedPreferences("BACSI", Context.MODE_PRIVATE);
+            ref.child(obj.getId()).child("status").setValue("Đang khám");
             pref.edit().putString("IDPK", obj.getId()).commit();
             pref.edit().putBoolean("DANGKHAM", true).commit();
             dangKham();

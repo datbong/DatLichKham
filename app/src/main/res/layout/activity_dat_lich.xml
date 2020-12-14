@@ -66,11 +66,14 @@
         app:srcCompat="@drawable/ic_doctor" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tvTenBs_datLichNd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Bác sĩ: Nguyễn Duy Đạt"
+        android:text="Bác sĩ: "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -79,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đánh giá: 4.0/5.0"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toStartOf="@+id/tvTenBs_datLichNd"
+        app:layout_constraintTop_toBottomOf="@+id/tvTenBs_datLichNd" />
 
     <TextView
         android:id="@+id/textView11"
@@ -88,6 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Vào ngày:"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
@@ -108,6 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Vào lúc:"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/edNgay_TaoPhieuKham"
         app:layout_constraintTop_toBottomOf="@+id/edNgay_TaoPhieuKham" />
 

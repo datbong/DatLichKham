@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.datlichkham.model.PhieuKham;
@@ -37,6 +38,9 @@ public class DatLichActivity extends AppCompatActivity {
 
         idBs = getIntent().getStringExtra("IDBS");
         tenBs = getIntent().getStringExtra("TENBS");
+
+        TextView tvTenBs = findViewById(R.id.tvTenBs_datLichNd);
+        tvTenBs.setText("Bác sĩ: "+tenBs);
 
         prefs = getSharedPreferences("PREFS", MODE_PRIVATE);
         idBn = prefs.getString("USERNAME", "");
@@ -67,6 +71,7 @@ public class DatLichActivity extends AppCompatActivity {
         phieuKham.setDate(edNgay.getText().toString().trim());
         phieuKham.setTime(edGio.getText().toString().trim());
         ref.child(phieuKham.getId()).setValue(phieuKham);
+        finish();
     }
 
     private void showTimeDialog() {
