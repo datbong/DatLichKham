@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     currentFragment = new BsLichKhamFragment();
                     break;
                 case R.id.menu_chat:
-                    currentFragment = new BsChatFragment();
+                    currentFragment = new NdChatFragment();
                     break;
                 case R.id.menu_setting:
                     currentFragment = new NdSettingFragment();

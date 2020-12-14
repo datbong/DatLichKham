@@ -81,7 +81,7 @@ public class BsHomeFragment extends Fragment implements View.OnClickListener{
             case R.id.cv_message_bsHome:
                 bnv.setSelectedItemId(R.id.menu_chat);
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new BsChatFragment()).commit();
+                        .replace(R.id.fragment_container, new NdChatFragment()).commit();
                 break;
             case R.id.cv_news_bsHome:
                 getActivity().startActivity(new Intent(getContext(), BangTinActivity.class));
